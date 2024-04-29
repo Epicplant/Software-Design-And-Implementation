@@ -1,0 +1,8 @@
+# Tests shortest path for the complicated set provided by the assignment
+
+# Loads a new graph from a csv file
+loaded graph heroes
+
+# Finds shortest path between heroes
+path from Notkin-of-the-Superhuman-Beard to Grossman-the-Youngest-of-them-all:
+Notkin-of-the-Superhuman-Beard to Grossman-the-Youngest-of-them-all via CSE331

@@ -1,0 +1,16 @@
+# Tests adding a singular edge between 2 nodes
+
+# Creates a new graph
+created graph newGraph
+
+# Creates the edges starting node
+added node n1 to newGraph
+
+# Creates the edges end node
+added node n2 to newGraph
+
+# Creates an edge between the starting and end node with weight 0
+added edge 0 from n1 to n2 in newGraph
+
+# Lists all of the children of this node
+the children of n1 in newGraph are: n2(0)

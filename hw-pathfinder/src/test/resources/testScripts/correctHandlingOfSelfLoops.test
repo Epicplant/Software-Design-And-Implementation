@@ -1,0 +1,41 @@
+# Tests that if there are multiple self loops littered throughout the graph that the minimum cost path
+# is still calculated correctly.
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Adds node A to the graph
+AddNode newGraph A
+
+# Adds node B to the graph
+AddNode newGraph B
+
+# Adds node C to the graph
+AddNode newGraph C
+
+# Adds node D to the graph
+AddNode newGraph D
+
+# Adds edge of weight 2.5 to the graph
+AddEdge newGraph A A 2.500
+
+# Adds edge of weight 3 to the graph
+AddEdge newGraph A B 3
+
+# Adds edge of weight 1 to the graph
+AddEdge newGraph B B 1
+
+# Adds edge of weight 3 to the graph
+AddEdge newGraph B C 3
+
+# Adds edge of weight 4 to the graph
+AddEdge newGraph C C 4
+
+# Adds edge of weight 2.8 to the graph
+AddEdge newGraph C D 2.800
+
+# Adds edge of weight 1 to the graph
+AddEdge newGraph D D 1
+
+# Finds the shortest path from node A to node D
+FindPath newGraph A D

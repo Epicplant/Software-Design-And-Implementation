@@ -1,0 +1,31 @@
+# Tests correct functionality for multiple edges going from one node to another
+
+# Creates a new graph
+created graph newGraph
+
+# Creates the cycles first node
+added node n1 to newGraph
+
+# Creates the cycles second node
+added node n2 to newGraph
+
+# Creates an edge between the starting and end node with weight 0
+added edge 0 from n1 to n2 in newGraph
+
+# Creates another edge between the starting and end node with weight 0
+added edge 0 from n1 to n2 in newGraph
+
+# Creates another edge between the starting and end node with weight 2
+added edge 2 from n1 to n2 in newGraph
+
+# Lists all the children of node n1
+the children of n1 in newGraph are: n2(0) n2(2)
+
+# Lists all the nodes in the newGraph
+newGraph contains: n1 n2
+
+# Creates another edge between the starting and end node with weight 3
+added edge 3 from n1 to n2 in newGraph
+
+# Lists all the children of node n1
+the children of n1 in newGraph are: n2(0) n2(2) n2(3)

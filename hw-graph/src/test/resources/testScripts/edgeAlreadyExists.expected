@@ -1,0 +1,19 @@
+# Tests that adding an edge that already exists doesn't change anything
+
+# Creates a new graph
+created graph newGraph
+
+# Adds a new node n1
+added node n1 to newGraph
+
+# Adds a new node n2
+added node n2 to newGraph
+
+# Adds an edge between n1 and n2 of weight 0
+added edge 0 from n1 to n2 in newGraph
+
+# Adds a duplicate edge between n1 and n2 of weight 0
+added edge 0 from n1 to n2 in newGraph
+
+# Lists children of n1 which should only have one copy of the edge
+the children of n1 in newGraph are: n2(0)

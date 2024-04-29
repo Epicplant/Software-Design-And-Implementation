@@ -1,0 +1,25 @@
+# Tests correct functionality with a single loop
+
+# Creates a new graph
+created graph newGraph
+
+# Creates the cycles first node
+added node n1 to newGraph
+
+# Creates the cycles second node
+added node n2 to newGraph
+
+# Creates an edge between the starting and end node with weight 0
+added edge 0 from n1 to n2 in newGraph
+
+# Creates an edge from the end node to the starting node with weight 0
+added edge 0 from n2 to n1 in newGraph
+
+# Lists all the children of node n1
+the children of n1 in newGraph are: n2(0)
+
+# Lists all the children of node n2
+the children of n2 in newGraph are: n1(0)
+
+# Lists all the nodes in the newGraph
+newGraph contains: n1 n2

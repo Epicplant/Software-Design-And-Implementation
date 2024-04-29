@@ -1,0 +1,13 @@
+# Tests that a graph with 2 or more connected nodes loads properly
+
+# Loads a new graph from a csv file
+LoadGraph newGraph complexHeroGraph.csv
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph
+
+# Lists all of the children of A
+ListChildren newGraph A
+
+# Lists all of the children of B
+ListChildren newGraph B

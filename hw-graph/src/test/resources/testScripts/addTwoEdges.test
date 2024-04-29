@@ -1,0 +1,22 @@
+# Tests adding two edges pointing back and forth between between 2 nodes
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Creates the edges' first node
+AddNode newGraph n1
+
+# Creates the edges' second node
+AddNode newGraph n2
+
+# Creates an edge from n1 to n2 with weight 2
+AddEdge newGraph n1 n2 2
+
+# Creates an edge from n2 to n1 with weight -2
+AddEdge newGraph n2 n1 -2
+
+# Lists all of the children of this node
+ListChildren newGraph n1
+
+# Lists all of the children of this node
+ListChildren newGraph n2

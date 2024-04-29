@@ -1,0 +1,31 @@
+# Tests that a dest node that is only one node away from the source node gives the correct answer
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Adds node A to the graph
+AddNode newGraph A
+
+# Adds node B to the graph
+AddNode newGraph B
+
+# Adds node C to the graph
+AddNode newGraph C
+
+# Adds edge of weight 3 to the graph
+AddEdge newGraph A B 3
+
+# Adds edge of weight 3.888 to the graph
+AddEdge newGraph A C 3.888
+
+# Adds edge of weight 2.75 to the graph
+AddEdge newGraph B C 2.750
+
+# Finds the shortest path from node A to node B
+FindPath newGraph A B
+
+# Finds the shortest path from node A to node C
+FindPath newGraph A C
+
+# Finds the shortest path from node B to node C
+FindPath newGraph B C

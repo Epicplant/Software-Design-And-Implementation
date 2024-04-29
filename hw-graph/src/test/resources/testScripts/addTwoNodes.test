@@ -1,0 +1,13 @@
+# Adds 2 nodes to the graph
+
+# Creates a new Graph
+CreateGraph newGraph1
+
+# Adds a new node "n1"
+AddNode newGraph1 n1
+
+# Adds a new node "n2"
+AddNode newGraph1 n2
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph1

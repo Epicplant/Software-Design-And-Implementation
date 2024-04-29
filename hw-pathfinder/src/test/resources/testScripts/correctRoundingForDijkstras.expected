@@ -1,0 +1,30 @@
+# Tests that the weighted paths are rounded correctly when their sum is added up
+
+# Creates a new graph
+created graph newGraph
+
+# Adds node A to the graph
+added node A to newGraph
+
+# Adds node B to the graph
+added node B to newGraph
+
+# Adds node C to the graph
+added node C to newGraph
+
+# Adds edge of weight 2.72341 to the graph
+added edge 2.723 from A to B in newGraph
+
+# Adds edge of weight 1.11114 to the graph
+added edge 1.111 from B to C in newGraph
+
+# Finds the shortest path from node A to node B
+path from A to B:
+A to B with weight 2.723
+total cost: 2.723
+
+# Finds the shortest path from node A to node C
+path from A to C:
+A to B with weight 2.723
+B to C with weight 1.111
+total cost: 3.835

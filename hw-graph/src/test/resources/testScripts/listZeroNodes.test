@@ -1,0 +1,8 @@
+# Tests that we correctly have a list of 0 nodes when ListNodes is called
+# and the graph is empty
+
+# Creates our new graph
+CreateGraph newGraph
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph

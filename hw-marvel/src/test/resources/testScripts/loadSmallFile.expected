@@ -1,0 +1,13 @@
+# Tests that a graph with 2 nodes who share a comic are properly connected to each other
+
+# Loads a new graph from a csv file
+loaded graph newGraph
+
+# Lists all of the nodes of this new graph
+newGraph contains: A B
+
+# Lists all of the children of A
+the children of A in newGraph are: B(1)
+
+# Lists all of the children of B
+the children of B in newGraph are: A(1)

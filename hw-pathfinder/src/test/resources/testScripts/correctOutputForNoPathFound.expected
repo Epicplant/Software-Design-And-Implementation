@@ -1,0 +1,24 @@
+# Tests that the output "no path found" is displayed when a path can't be attained between two nodes
+
+# Creates a new graph
+created graph newGraph
+
+# Adds node A to the graph
+added node A to newGraph
+
+# Adds node B to the graph
+added node B to newGraph
+
+# Adds node C to the graph
+added node C to newGraph
+
+# Adds edge of weight 16 to the graph
+added edge 16.000 from A to B in newGraph
+
+# Finds the shortest path from node A to node C
+path from A to C:
+no path found
+
+# Finds the shortest path from node C to node A
+path from C to A:
+no path found

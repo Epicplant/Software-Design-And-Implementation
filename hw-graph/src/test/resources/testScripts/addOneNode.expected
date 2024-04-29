@@ -1,0 +1,10 @@
+# Adds 1 node to the graph
+
+# Creates a new Graph
+created graph newGraph
+
+# Adds a new node "n1"
+added node n1 to newGraph
+
+# Lists all of the nodes of this new graph
+newGraph contains: n1

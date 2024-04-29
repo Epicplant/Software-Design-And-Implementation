@@ -1,0 +1,88 @@
+# Tests that correct path and minimum cost is displayed for a more complicated graph with many paths
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Adds the node A to newGraph
+AddNode newGraph A
+
+# Adds the node B to newGraph
+AddNode newGraph B
+
+# Adds the node C to newGraph
+AddNode newGraph C
+
+# Adds the node D to newGraph
+AddNode newGraph D
+
+# Adds the node E to newGraph
+AddNode newGraph E
+
+# Adds the node F to newGraph
+AddNode newGraph F
+
+# Adds the node G to newGraph
+AddNode newGraph G
+
+# Adds the node H to newGraph
+AddNode newGraph H
+
+# Adds the node I to newGraph
+AddNode newGraph I
+
+# Adds the node J to newGraph
+AddNode newGraph J
+
+# Adds edge of weight 1 to the graph
+AddEdge newGraph D B 1
+
+# Adds edge of weight 9 to the graph
+AddEdge newGraph D A 9
+
+# Adds edge of weight 1 to the graph
+AddEdge newGraph D B 1
+
+# Adds edge of weight 2 to the graph
+AddEdge newGraph B G 2
+
+# Adds edge of weight 7 to the graph
+AddEdge newGraph B H 7
+
+# Adds edge of weight 6 to the graph
+AddEdge newGraph B C 6
+
+# Adds edge of weight 12 to the graph
+AddEdge newGraph G A 12
+
+# Adds edge of weight 10 to the graph
+AddEdge newGraph G C 10
+
+# Adds edge of weight 5 to the graph
+AddEdge newGraph A C 5
+
+# Adds edge of weight 3 to the graph
+AddEdge newGraph C H 3
+
+# Adds edge of weight 7 to the graph
+AddEdge newGraph C F 7
+
+# Adds edge of weight 8 to the graph
+AddEdge newGraph H F 8
+
+# Adds edge of weight 3 to the graph
+AddEdge newGraph H C 3
+
+# Adds edge of weight 13 to the graph
+AddEdge newGraph F I 13
+
+# Adds edge of weight 11 to the graph
+AddEdge newGraph I E 11
+
+# Adds edge of weight 9 to the graph
+AddEdge newGraph I J 9
+
+# Adds edge of weight 2 to the graph
+AddEdge newGraph E J 2
+
+# Find the least weight path from D to J
+FindPath newGraph D J

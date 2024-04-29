@@ -1,0 +1,13 @@
+# Tests that we don't have duplicate nodes
+
+# Creates our new graph
+CreateGraph newGraph
+
+# Adds a new node "n1"
+AddNode newGraph n1
+
+# Adds a new node "n1" again
+AddNode newGraph n1
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph

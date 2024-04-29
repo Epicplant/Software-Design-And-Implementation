@@ -1,0 +1,7 @@
+# Tests that a graph that has absolutely no nodes is loaded correctly
+
+# Loads a new graph from a csv file
+LoadGraph newGraph emptyFile.csv
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph

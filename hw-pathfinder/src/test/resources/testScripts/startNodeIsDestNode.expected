@@ -1,0 +1,23 @@
+# Tests that if a node's destination is it's source that the cost is 0
+
+# Creates a new graph
+created graph newGraph
+
+# Adds node 1 to the graph
+added node 1 to newGraph
+
+# Adds node 2 to the graph
+added node 2 to newGraph
+
+# Adds node 3 to the graph
+added node 3 to newGraph
+
+# Adds edge of weight 5.5 to the graph
+added edge 5.500 from 1 to 2 in newGraph
+
+# Adds edge of weight 2.5 to the graph
+added edge 2.500 from 1 to 3 in newGraph
+
+# Finds the shortest path from node 1 to node 1
+path from 1 to 1:
+total cost: 0.000

@@ -1,0 +1,13 @@
+# Tests adding an edge between a node that exists and a node that doesn't
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Creates the edges' first node
+AddNode newGraph n1
+
+# Creates an edge from n1 to n2 with weight 2 that shouldn't exist
+AddEdge newGraph n1 n2 2
+
+# Lists only n1
+ListChildren newGraph n1

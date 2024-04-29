@@ -1,0 +1,17 @@
+# Tests that we correctly have a list of 1 nodes+edges when ListChildren is called
+# and the node has exactly 1 child
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Creates the first node
+AddNode newGraph n1
+
+# Creates the first nodes child
+AddNode newGraph n2
+
+# Creates first node
+AddEdge newGraph n1 n2 0
+
+# Lists all of the children of this node
+ListChildren newGraph n1

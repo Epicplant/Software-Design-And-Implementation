@@ -1,0 +1,50 @@
+# Tests that a dest node that is only two nodes away from the source node gives the correct answer
+
+# Creates a new graph
+created graph newGraph
+
+# Adds node A to the graph
+added node A to newGraph
+
+# Adds node B to the graph
+added node B to newGraph
+
+# Adds node C to the graph
+added node C to newGraph
+
+# Adds node D to the graph
+added node D to newGraph
+
+# Adds edge of weight 3 to the graph
+added edge 3.000 from A to B in newGraph
+
+# Adds edge of weight 3.888 to the graph
+added edge 3.888 from A to C in newGraph
+
+# Adds edge of weight 2.75 to the graph
+added edge 2.750 from B to C in newGraph
+
+# Adds edge of weight 12 to the graph
+added edge 12.000 from C to D in newGraph
+
+# Adds edge of weight 6 to the graph
+added edge 6.000 from D to C in newGraph
+
+# Adds edge of weight 4 to the graph
+added edge 4.000 from C to B in newGraph
+
+# Adds edge of weight 2 to the graph
+added edge 2.000 from B to A in newGraph
+
+# Finds the shortest path from node A to node D
+path from A to D:
+A to C with weight 3.888
+C to D with weight 12.000
+total cost: 15.888
+
+# Finds the shortest path from node D to node A
+path from D to A:
+D to C with weight 6.000
+C to B with weight 4.000
+B to A with weight 2.000
+total cost: 12.000

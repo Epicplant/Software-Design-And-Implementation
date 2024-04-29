@@ -1,0 +1,10 @@
+# Tests that if there are 2 paths of the exact same length from node 1 to node 2 that the lexicographically
+# shortest path is used
+
+# Loads the graph
+loaded graph heroes
+
+# Finds shortest path between heroes
+path from A to D:
+A to B via 1
+B to D via 4

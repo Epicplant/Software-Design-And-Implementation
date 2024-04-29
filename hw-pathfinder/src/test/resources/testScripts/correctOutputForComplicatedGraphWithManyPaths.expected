@@ -1,0 +1,94 @@
+# Tests that correct path and minimum cost is displayed for a more complicated graph with many paths
+
+# Creates a new graph
+created graph newGraph
+
+# Adds the node A to newGraph
+added node A to newGraph
+
+# Adds the node B to newGraph
+added node B to newGraph
+
+# Adds the node C to newGraph
+added node C to newGraph
+
+# Adds the node D to newGraph
+added node D to newGraph
+
+# Adds the node E to newGraph
+added node E to newGraph
+
+# Adds the node F to newGraph
+added node F to newGraph
+
+# Adds the node G to newGraph
+added node G to newGraph
+
+# Adds the node H to newGraph
+added node H to newGraph
+
+# Adds the node I to newGraph
+added node I to newGraph
+
+# Adds the node J to newGraph
+added node J to newGraph
+
+# Adds edge of weight 1 to the graph
+added edge 1.000 from D to B in newGraph
+
+# Adds edge of weight 9 to the graph
+added edge 9.000 from D to A in newGraph
+
+# Adds edge of weight 1 to the graph
+added edge 1.000 from D to B in newGraph
+
+# Adds edge of weight 2 to the graph
+added edge 2.000 from B to G in newGraph
+
+# Adds edge of weight 7 to the graph
+added edge 7.000 from B to H in newGraph
+
+# Adds edge of weight 6 to the graph
+added edge 6.000 from B to C in newGraph
+
+# Adds edge of weight 12 to the graph
+added edge 12.000 from G to A in newGraph
+
+# Adds edge of weight 10 to the graph
+added edge 10.000 from G to C in newGraph
+
+# Adds edge of weight 5 to the graph
+added edge 5.000 from A to C in newGraph
+
+# Adds edge of weight 3 to the graph
+added edge 3.000 from C to H in newGraph
+
+# Adds edge of weight 7 to the graph
+added edge 7.000 from C to F in newGraph
+
+# Adds edge of weight 8 to the graph
+added edge 8.000 from H to F in newGraph
+
+# Adds edge of weight 3 to the graph
+added edge 3.000 from H to C in newGraph
+
+# Adds edge of weight 13 to the graph
+added edge 13.000 from F to I in newGraph
+
+# Adds edge of weight 11 to the graph
+added edge 11.000 from I to E in newGraph
+
+# Adds edge of weight 9 to the graph
+added edge 9.000 from I to J in newGraph
+
+# Adds edge of weight 2 to the graph
+added edge 2.000 from E to J in newGraph
+
+# Find the least weight path from D to J
+path from D to J:
+D to B with weight 1.000
+B to C with weight 6.000
+C to F with weight 7.000
+F to I with weight 13.000
+I to J with weight 9.000
+total cost: 36.000

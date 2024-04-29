@@ -1,0 +1,11 @@
+# Tests that we correctly have a list of 0 nodes+edges when ListChildren is called
+# and the node has 0 children
+
+# Creates our new graph
+CreateGraph newGraph
+
+# Adds a new node "n1"
+AddNode newGraph n1
+
+# Lists all of the children of this node
+ListChildren newGraph n1

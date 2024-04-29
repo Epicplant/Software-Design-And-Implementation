@@ -1,0 +1,7 @@
+# Tests correct path if there is exactly two edges edge we need to travel to get from start node to end node
+
+# Loads a new graph from a csv file
+LoadGraph heroes maxPathTwoHeroGraph.csv
+
+# Finds shortest path between heroes
+FindPath heroes A C

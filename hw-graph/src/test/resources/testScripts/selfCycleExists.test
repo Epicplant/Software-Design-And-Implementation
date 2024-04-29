@@ -1,0 +1,16 @@
+# Tests correct functionality with a self-loop
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Creates the cycles first node
+AddNode newGraph n1
+
+# Creates a self-loop for n1 with weight 0
+AddEdge newGraph n1 n1 0
+
+# Lists all the children of node n1
+ListChildren newGraph n1
+
+# Lists all the nodes in the newGraph
+ListNodes newGraph

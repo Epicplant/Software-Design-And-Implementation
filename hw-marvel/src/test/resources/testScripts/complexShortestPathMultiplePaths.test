@@ -1,0 +1,13 @@
+# Stress tests pathfinding to make sure it works for larger data sets with many cycles and different paths.
+
+# Loads a new graph from a csv file
+LoadGraph heroes complexHeroGraph.csv
+
+# Finds shortest path between heroes
+FindPath heroes A I
+
+# Finds shortest path between heroes
+FindPath heroes C H
+
+# Finds shortest path between heroes
+FindPath heroes I D

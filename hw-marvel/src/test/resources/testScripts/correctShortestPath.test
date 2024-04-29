@@ -1,0 +1,7 @@
+# Tests shortest path for the complicated set provided by the assignment
+
+# Loads a new graph from a csv file
+LoadGraph heroes staffSuperheroes.csv
+
+# Finds shortest path between heroes
+FindPath heroes Notkin-of-the-Superhuman-Beard Grossman-the-Youngest-of-them-all

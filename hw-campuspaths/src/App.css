@@ -1,0 +1,76 @@
+/*
+ * Copyright (C) 2022 Kevin Zatloukal and James Wilcox.  All rights reserved.  Permission is
+ * hereby granted to students registered for University of Washington
+ * CSE 331 for use solely during Spring Quarter 2021 for purposes of
+ * the course.  No other use, copying, distribution, or modification
+ * is permitted without prior written consent. Copyrights for
+ * third-party components of this work must be honored.  Instructors
+ * interested in reusing these course materials should contact the
+ * author.
+ */
+
+/*
+CSS file used by the Application
+
+It provides placement and style information for the components in the app
+and only exists for aesthetic purposes. The app would work just fine if this
+file was empty.
+*/
+
+/* Centers component with ID "map-wrapper" and sets width and bottom spacing */
+#map {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 800px;
+}
+
+/* Centers the header */
+#head {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+/* Gives the BuildingDropdown component some space and makes the text properly align*/
+#building-dropdown {
+    text-align: center;
+    margin: 5px;
+}
+
+/* The style for the actual dropdown menus and their headers.
+ Makes it so they are in a row and spaced apart on either side of the buttons */
+#dropdowns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    justify-content: space-around;
+}
+
+/* The style for the dropdown menus which just resizes them */
+.dropdown-params {
+    width: 200px;
+    height: 25px;
+}
+
+/* The style for the dropdown menus' headers which just increases font size*/
+.dropdown-heads {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Sets size of map, which has class name "leaflet-container" */
+.leaflet-container {
+    width: 800px;
+    height: 600px;
+}
+
+/* Changes the the size of the buttons */
+.button {
+    width: 300px;
+    height: 100px;
+    font-size: 36px;
+}

@@ -1,0 +1,118 @@
+## CSE 331 hw-graph Part 2 Questions
+
+NOTE: This file is used as part of hw-graph-part2, and is not due as part of the hw-graph-part1
+submission. You may leave it blank for hw-graph-part1.
+
+## Part 1
+###########################################################################
+
+A few examples of possible Graph representations:
+
+    A: A collection of nodes and a collection of edges.
+    B: An adjacency list, in which each node is associated with a list of its outgoing edges.
+    C: An adjacency matrix, which explicitly represents, for every pair ⟨A,B⟩ of nodes, whether there 
+       is a link from A to B, and how many.
+
+1. In two or three sentences, explain an advantage and a disadvantage of each of the
+representations listed above (for example, in terms of runtime complexity, space
+complexity, or ease of implementation).
+
+    Implementation A:
+        Advantages: This method takes up significantly less space than either the map required for the
+        adjacency list or the 2d array required for the adjacency matrix. Additionally, it is
+        very easy to access every single edge as since they are all neatly stored in a single collection
+        (as opposed to iterating through every adjacency list key or all array values in the matrix
+        which will be (node number) * (node number) values). It is also very easy to implement, and
+        requires little maintenance aside from either adding an edge or a node to their respective lists.
+
+        Disadvantages: This method makes it very difficult to traverse the graph, as once you
+        arrive at a new node, you need to iterate over all edges that exist in the entire graph in order
+        to find out what possible children that node has (potentially making dense graphs INCREDIBLY expensive
+        to traverse effectively). In fact, any methods that deal with a single node's relationships (indegree,
+        outdegree, listParents, etc.) with either its parents or its children
+        will require the traversal of all edges, regardless of whether some edges are even remotely related.
+
+    Implementation B:
+        Advantages: Finding relevant edges for a specific node for specific operations is really inexpensive,
+        as usually only a fraction of the total edges are stored with an associated node. Essentially, any
+        operations that focus on a nodes children (indegree, childNodes) or all nodes (listNodes) are very
+        inexpensive due to use knowing exactly where individual nodes' child information is placed as
+        well as having an easy way to iterate through every single node (in the form of keySet).
+
+        Disadvantages: This method implementation takes up a considerable amount of memory for graphs
+        with many nodes due to maps being fairly memory intensive. Additionally, this method is very poor
+        at finding relations between a specific node and its parents as in order to do so it must
+        iterate through every key and every list associated with the keys which ultimately means we take
+        O(n + v) where n is the total number of nodes and v is the total number of edges. Finally, the
+        implementation of adjacency lists requires quite a few nested loops in order to do analysis
+        over the entire map as well as a class/tuple to hold both a childNode and a weight,
+        ultimately making the coding complexity significantly greater than something
+        like implementation A.
+
+    Implementation C:
+        Advantages: Finding whether a node exists between any 2 nodes and then
+        finding its value takes constant time, and finding the
+        both the parents and children of a node simply takes O(n) time where n is the number of nodes.
+        Additionally, this method is fairly easy to implement, as it is usually simply represented
+        as a 2d array with operations at worst having to iterate through every single index of that 2d
+        array.
+
+        Disadvantages: This method implementation takes an incredibly large amount of space, as is
+        takes up memory equal to the (number of nodes) * (number of nodes). Additionally, in order to
+        attain every single edge in the graph, one needs to iterate through every single index in the graph
+        which takes O(n^2) where n is the number of nodes, ultimately making some operations incredibly
+        expensive.
+
+
+
+
+2. In two to three sentences, describe the representation you chose and explain why you
+chose it. If you chose to use a different representation than one of the three we described
+above, be sure to list its advantages and disadvantages, too.
+
+Chosen Representation: Adjacency List
+
+Answer: Since we are ultimately going to be traversing nodes a MANY times with our graphs, I decided
+to use the adjacency list representation as it is by far the most efficient in terms of taking a node
+and efficiently representing its children (since we usually over traverse of a fraction of all edges
+as opposed to all nodes or all edges like in the other reps). Additionally, once the tuple/class representing
+edges/nodes is implemented, actually creating the rest of the adjacency list is extremely easy due
+to the nodes already being in sorted order due to the hashmap and most values already being stored
+in some collection or another (making listNodes and listChildren trivially easy).
+
+
+
+
+## Part 4
+###########################################################################
+
+    (Please keep your answers brief and to-the-point.)
+
+1. Describe any new tests you added and why you added them, or why you feel that your original
+tests alone are sufficient.
+
+Answer: I did not add any new tests to my original test suite, as I 1) tested nearly every edge case
+I could think of and find in part #1 and 2) because I have over 50 tests already which is a very
+thorough test suite (with this having more tests than even RatTerm. I could go into more depth to
+test random functionality through the use of fuzzy testing to ensure that even creating large
+complex graphs returns expected answer, but the level of effort and time required to implement it
+is better spent elsewhere. I  considered adding tests to see if any of my returned lists of strings/
+nodes could cause rep exposure, but since both strings and nodes are immutable I discovered during
+this Office Hours that this was unnecessary.
+
+
+2. Did you make any changes to your specifications as you were implementing your Graph? (yes/no)
+If yes, describe your changes and why you made them.
+
+Did I make changes?: Yes
+
+Answer: I made one change, where instead of indegree and outdegree returning -1 when a node wasn't found,
+it merely returned 0 as this cut down on the amount of code and was ultimately unnecessary information.
+Additionally, I made the change to add to my spec that nodesNeighbors() returned the nodes
+in the order of parents first followed by all child Nodes as not only did this make the return
+function more specific but it also allowed me to not have to write a bunch of sorting code
+in my graph class. Aside from these changes, pretty much everything else stayed exactly the same. Finally,
+2 checkRep methods (1 for node and 1 for ChrisGraph) were made to ensure the claesses rep invariants weren't
+violated.
+
+

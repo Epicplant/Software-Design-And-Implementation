@@ -1,0 +1,23 @@
+# Tests that we correctly have a list of 2 nodes+edges when ListChildren is called
+# and the node has exactly 2 children
+
+# Creates a new graph
+CreateGraph newGraph
+
+# Creates the first node
+AddNode newGraph n1
+
+# Creates the first nodes child
+AddNode newGraph n2
+
+# Creates the first nodes second child
+AddNode newGraph n3
+
+# Creates first node
+AddEdge newGraph n1 n2 13
+
+# Creates first node
+AddEdge newGraph n1 n3 27
+
+# Lists all of the children of this node
+ListChildren newGraph n1

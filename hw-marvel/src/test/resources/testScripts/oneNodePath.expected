@@ -1,0 +1,8 @@
+# Tests correct path if there is exactly one edge we need to travel to get from start node to end node
+
+# Loads a new graph from a csv file
+loaded graph heroes
+
+# Finds shortest path between heroes
+path from A to B:
+A to B via 1

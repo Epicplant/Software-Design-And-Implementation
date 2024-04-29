@@ -1,0 +1,7 @@
+# A test to see that a graph instance can be successfully created
+
+# Creates a Graph
+created graph newGraph
+
+# Lists all of the children of node n1
+the children of n1 in newGraph are:

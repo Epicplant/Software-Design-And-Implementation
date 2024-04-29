@@ -1,0 +1,14 @@
+# Tests that we correctly have a list of 2 node when ListNodes is called
+# and the graph has exactly 2 nodes
+
+# Creates our new graph
+created graph newGraph
+
+# Adds a new node "n1"
+added node n1 to newGraph
+
+# Adds a new node "n2"
+added node n2 to newGraph
+
+# Lists all of the nodes of this new graph
+newGraph contains: n1 n2

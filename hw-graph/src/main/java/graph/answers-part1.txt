@@ -1,0 +1,118 @@
+## CSE 331 hw-graph Part 1 Questions
+
+## Part 1
+###########################################################################
+
+Briefly explain why you included the operations you did and why you feel they are a sufficient
+interface to a graph. If your design includes multiple classes or interfaces, explain why you
+included each one; if not, explain whether you considered additional classes and why you decided
+not to include them.
+
+Node Class With Node Construct: The class was created for a very specific purpose: to fulfill the
+requirements for a data storage object that would allow me to create an adjacency list representation
+of a graph. The idea is that I will ultimately create a map (using node names as keys) which holds a list of
+Nodes being pointed to by the node stored as the key. As a result, all I need the node object to be
+is a holder for the name of the node that is being pointed to by the key node as well as the weight of the edge between them.
+For example, if we are at map index "a" which has the list [(b, 2), (c, 3)] then it means that node a points to node
+b with weight 2 and to node c with weight 3.
+
+Node Class getNodeName: This method is necessary to be able to actually see the name of a node when it is pointed to.
+Without it, we would simply be pointing to a mystery node object that we have no way of determining the value of.
+Maintains abstraction barrier.
+
+Node Class getNodeWeight: This method is necessary to be able to actually see the weight of an edge between its
+parent and child node. Without it, we would simply be traversing across a mystery edge
+(that has a hidden weight) to a mystery node. Maintains abstraction barrier.
+
+Node Class equals: This allows for 2 nodes to be compared with other nodes quickly and effectively
+(also allows it to work with most other comparative frameworks). Without, sorting a nodes' children
+would be far more difficult, so it is a useful method to have. It maintains the abstraction barrier.
+
+Node Class hashCode: This allows for node's be sorted properly in hashmaps, while also helping to ensure that most
+nodes have a unique identifier. This is a very useful general purpose method that allows node to behave properly
+in hashing ADTs, so it is very good to have. It maintains the abstraction barrier.
+
+addNode: This method is necessary since we don't ever want the client to be able to directly manipulate
+the graph data structure. As a result, we need setter methods such as this to allow clients to change
+the graph in legal ways and to not let them potentially either violate our rep invariant or perform
+malicious activities (essentially maintaining the abstraction barrier).
+
+nodesChildren: Graphs almost always function as a way to identify paths, and without knowing what a node's children are
+it is impossible to know what nodes are options to jump to whenever we are at a specific node. As a result, this method will be
+vital since the client isn't allowed to view the actual graph (abstraction barrier) and this will be the only way they are
+able to determine what nodes they can next move to.
+
+nodesParents: Depending on what we are actually using a graph for, sometimes it might be more useful to traverse a graph by looking
+at its parents instead. For example, if we had a digraph which connected courses based on prerequisites and we wanted to find what
+courses we would need to get to it the fastest, tracing backwards via parent nodes instead of traversing through all possible
+combinations of a starting node’s childrens’ children would be much faster. As a result, this allows for the previously mentioned
+functionality while also maintaining the abstraction barrier.
+
+nodesNeighbors: If we are dealing with an undirected graph, then both the parents and the children are required to determine all
+possible locations you can move to from a particular node. As a result, this is a very useful method that saves us the trouble of
+getting both a node's parents and a node's children through their respective methods. Once again maintains the abstraction
+barrier.
+
+nodesInDegree: A node’s indegree is vital to such algorithms as Dijkstra's, with the indegree helping to identify the
+shortest paths between two nodes. As a result, it is very useful for a client to know a specific node's indegree, with this
+method giving that information while maintaining the abstraction barrier.
+
+nodesOutDegree: This helps easily show whether a node is an end node (no path beyond this) or not, ultimately being useful
+in some operations. Once again maintains the abstraction barrier.
+
+addEdge: When we are initially creating graphs, we want to be able to create a potentially weighted edge between two nodes.
+Without this, it is impossible for a client to touch the protected graph data structure, so it is the only
+way to actually build connected graphs with our object. As a result, it is vital to a graph's construction.
+
+graphContainsNode: This allows a quick way to determine whether a given node actually exists in the graph or not which could
+be useful as a utility method for different algorithms while not violating hte abstraction barrier.
+
+listAllNodes: This allows for a quick evaluation of which nodes are currently available to be used in the creation of graphs (adding edges
+between them, etc.) by both printing them out and returning a list of node names. This is very useful in graph construction and would greatly help with
+graph planning without breaking the abstraction barrier.
+
+
+General Summary of why these are sufficient: All of these methods combined give a viable way of creating a graph, traversing a graph,
+and analyzing a graph without the abstraction barrier being broken even once, ultimately allowing for a stable
+and secure data structure (we were told reformatting a graph wasn't required so remove methods aren't necessary).
+As a result of all these core functionalities being foundationally created, the ADT is perfectly capable
+of being used by different graph algorithms and is able to represent just about anything that a normal graph can.
+
+
+
+## Part 2
+###########################################################################
+
+What was your testing strategy for this assignment? How do your script tests and JUnit tests
+differ from each other (if they do), and why?
+
+Answer: For this assignment, since we were only creating code stubs, I performed black-box testing. Essentially, I
+created tests scenarios that should return specific output
+based on what the spec says should happen. For example, with the addEdge
+method there are clearly defined scenarios where an edge *should* be added and when it *shouldn't*
+be added (such as when the edge already exists). With this knowledge, I automatically know I should
+write tests to make sure that if an identical edge already exists that a new edge is not added. Other scenarios
+include adding edge correctly if it doesn't already exist amongst other things. With this strategy, I'll
+be able to catch most of the major bugs that cause the methods to not work very early, while also catching most
+edge cases, as there are specific tests for nearly all of them (checking if getChildren works for loops, etc.).
+Regarding how the junit tests differ from the script tests,
+script tests are generic whereas JUnit tests are specific. To go into more detail, JUnit tests directly reference
+the methods and functionalities of an ADT in order to test if it has expected output. For example, ChrisGraph
+JUnit tests call the constructor of ChrisGraph to create it and then call methods like "addNode" and "addEdge"
+(which are entirely specific and unique to the ChrisGraph class) in order to see if it functions correctly.
+Script tests on the other hand don't actually need to create a specific instance of a graph or specifically
+call named methods, and instead merely test the functionalities of all potential graphs. Essentially,
+Script tests have a few functions that represent the operations of a generic/basic graph,
+with those functions being mapped to by actual graph classes so that they work properly.
+By forcing graphs to uniformly create mappings from their methods to universal and
+generic graph methods, script tests essentially universally work on all ADTs that are attempting to represent graphs.
+This is a fantastic tool that removes a lot of the need to write many new unique tests everytime a graph is made,
+and instead only requires us to remap our new graphs methods to the script tests in order to use them again.
+However, Script Tests, especially in the case of this assignment, have a limited number of predetermined
+generic methods they can call to test if a Graph works as expected. Since every Graph ADT is different,
+every graph is going to have unique functionalities that couldn't possibly all have a representation
+within a generic script test group. As a result, JUnit tests are inevitably still required in order to
+to test specific functionality for graphs that aren't necessarily "required" to make a fully working graph.
+As a result, my Script Tests test the functionality of all the things a generic graph MUST do (adding nodes,
+adding edges, listing children, etc.) whereas my JUnit tests check to see that any methods that aren't
+part of a generic graph (indegree, outdegree, etc.) additionally function properly.

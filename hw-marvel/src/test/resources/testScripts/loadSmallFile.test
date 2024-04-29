@@ -1,0 +1,13 @@
+# Tests that a graph with 2 nodes who share a comic are properly connected to each other
+
+# Loads a new graph from a csv file
+LoadGraph newGraph basicHeroGraph.csv
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph
+
+# Lists all of the children of A
+ListChildren newGraph A
+
+# Lists all of the children of B
+ListChildren newGraph B

@@ -1,0 +1,7 @@
+# A test to see that a graph instance can be successfully created
+
+# Creates a Graph
+CreateGraph newGraph
+
+# Lists all of the children of node n1
+ListChildren newGraph n1

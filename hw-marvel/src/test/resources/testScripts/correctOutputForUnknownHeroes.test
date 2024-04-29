@@ -1,0 +1,13 @@
+# Tests when the start and/or the dest node don't exist that the correct output is displayed
+
+# Loads a new graph from a csv file
+LoadGraph heroes complexHeroGraph.csv
+
+# Finds shortest path between heroes
+FindPath heroes A Z
+
+# Finds shortest path between heroes
+FindPath heroes Z A
+
+# Finds shortest path between heroes
+FindPath heroes X Z

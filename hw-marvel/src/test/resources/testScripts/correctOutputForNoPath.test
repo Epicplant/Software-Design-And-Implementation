@@ -1,0 +1,7 @@
+# Tests that when a path doesn't exist that the correct output is displayed
+
+# Loads a new graph from a csv file
+LoadGraph heroes someUnconnectedHeroes.csv
+
+# Finds shortest path between heroes
+FindPath heroes A C

@@ -1,0 +1,13 @@
+# Tests that we don't have duplicate nodes
+
+# Creates our new graph
+created graph newGraph
+
+# Adds a new node "n1"
+added node n1 to newGraph
+
+# Adds a new node "n1" again
+added node n1 to newGraph
+
+# Lists all of the nodes of this new graph
+newGraph contains: n1

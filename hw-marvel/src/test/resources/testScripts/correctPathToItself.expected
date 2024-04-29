@@ -1,0 +1,7 @@
+# Tests that the shortest path from something to itself is nothing.
+
+# Loads a new graph from a csv file
+loaded graph heroes
+
+# Finds shortest path between heroes
+path from A to A:

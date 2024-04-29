@@ -1,0 +1,25 @@
+# Tests that listChildren now numerically orders things properly with doubles instead of lexicographically with strings
+
+# Creates a new graph
+created graph newGraph
+
+# Adds node 1 to the graph
+added node 1 to newGraph
+
+# Adds node 2 to the graph
+added node 2 to newGraph
+
+# Adds node 3 to the graph
+added node 3 to newGraph
+
+# Adds edge of weight 5.5 to the graph
+added edge 5.500 from 1 to 2 in newGraph
+
+# Adds edge of weight 2 to the graph
+added edge 2.000 from 1 to 2 in newGraph
+
+# Adds edge of weight 2.5 to the graph
+added edge 2.500 from 1 to 3 in newGraph
+
+# Finds the shortest path from node 1 to node 1
+the children of 1 in newGraph are: 2(2.000) 2(5.500) 3(2.500)

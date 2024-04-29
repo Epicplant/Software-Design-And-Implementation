@@ -1,0 +1,13 @@
+# Tests adding an edge between a node that exists and a node that doesn't
+
+# Creates a new graph
+created graph newGraph
+
+# Creates the edges' first node
+added node n1 to newGraph
+
+# Creates an edge from n1 to n2 with weight 2 that shouldn't exist
+added edge 2 from n1 to n2 in newGraph
+
+# Lists only n1
+the children of n1 in newGraph are:

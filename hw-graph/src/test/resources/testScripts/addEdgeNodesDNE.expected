@@ -1,0 +1,13 @@
+# Tests that adding an edge to nodes that don't exist won't break code
+
+# Creates a new graph
+created graph newGraph
+
+# Adds a new node
+added node n1 to newGraph
+
+# Adds an edge between two nonexistant nodes
+added edge 0 from n1 to n2 in newGraph
+
+# Lists children of n1 which should be empty
+the children of n1 in newGraph are:

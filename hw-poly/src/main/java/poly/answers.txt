@@ -1,0 +1,315 @@
+## CSE 331 hw-poly Questions
+## Part 0
+###########################################################################
+
+1. Multiplication Pseudocode
+
+    twoTerms = orig * multiplier (where twoTerms is the ultimate ratPoly created):
+
+        If orig or multiplier is not a real number
+        THEN: return not a number
+        ELSE:
+            Create a variable called totalPoly which we set to be an empty term.
+
+            {inv: total_poly = orig * multiplier_1 + orig* multiplier_2 +....+ orig * multiplier_(i)
+            where i is the ith term in the multiplier polynomial}
+
+            for each individual RatTerm (multiplier_term) within multiplier:
+
+                Create a variable currentPoly which we set to an empty term
+
+                {inv: currentPoly = multiplier_term * orig_1 + multiplier_term * orig_2+
+                multiplier_term * orig_(j) where orig_j is the jth term in the
+                orig polynomial}
+
+                for each individual RatTerm (orig_term) within multiplier:
+                    Multiply orig_term and multiplier_term together using RatTerm operations to get some variable which we will call adder.
+                    Set currentPoly equal to currentPoly+adder by using the "add" RatTerm operations
+
+
+                Add currentPoly and totalPoly together using the add pseudocode from the spec
+            return the RatPoly totalPoly
+
+
+
+2. Division Pseudocode
+
+
+   If p is 0 or a NaN value is present within either the divisor or the dividend,
+        THEN: just return Not a Number
+        ELSE:
+           Create a variable called divisor which we will set to the divisor polynomial we are dividing with
+
+           Create a quotient variable called quotient which will start empty so that we can gradually build it up as we loop
+
+           Create a remainder variable called remainder which will start as the dividend polynomial and will gradually decrease as we perform long division
+
+           {inv: dividend = (quotient * divisor) + remainder}
+           While the degree of the divisor is less than or equal to the degree of the remainder and while remainder does not equal 0:
+
+               Find the largest degreed term within the remainder and call it remainder_degree
+               Find the largest degreed term within the divisor and call it the divisor_degree
+
+               Determine the value that we can multiply divisor_degree by to get remainder_degree  through the operation of
+               dividing remainder_degree by divisor_degree (using the RatTerm division method). Call this value scaler
+
+               Add this multiplier RatPoly to quotient (quotient = quotient + scaler) using the add pseudocode for RatPoly's in the spec.
+
+               Next, we will need to perform the following operation with RatPolys: remainder = remainder - (divisor * scaler). We will multiply divisor and scaler
+               the same way we do in the multiplication pseudocode. Additionally, subtracting the RatPolys is just the same as adding remainder to a negated divisor*multiplayer.
+               As a result, to negate divisor*scaler (which we will just call subtractor), we loop through subtractor's RatTerms and perform the RatTerm
+               negate operation on each one of them, adding them to a newly created RatPoly object which we then return.
+               As a result, we now have remainder + (-subtractor) which we will set equal to the remainder RatPoly.
+
+            return the quotient.
+
+3. Division Example: (x3+x-1) / (x+1) = x2-x+2
+
+       If p is 0 or a NaN value is present within either the divisor or the dividend, [FALSE]
+            THEN: just return Not a Number
+            ELSE:
+
+      else:
+      Create a variable called divisor which we will set to the divisor polynomial we are dividing with [divisor = (x+1)]
+
+      Create a quotient variable called quotient which will start empty so that we can gradually build it up as we loop [quotient = *empty RatPoly*]
+
+      Create a remainder variable called remainder which will start as the dividend polynomial and will gradually decrease as we perform long division [returner = (x^3+x-1)]
+
+       {inv: dividend = (quotient * divisor) + remainder}
+       while the degree of the divisor is less than or equal to the degree of the remainder and while remainder does not equal 0:
+
+       Iteration #1: [divisor = (x+1) && quotient = 0 && remainder = (x^3 + x - 1)]
+
+            Find the largest degreed term within the remainder and call it remainder_degree [remainder_degree = x^3]
+            Find the largest degreed term within the divisor and call it the divisor_degree [x]
+
+            Determine the value that we can multiply divisor_degree by to get remainder_degree  through the operation of
+            dividing remainder_degree by divisor_degree (using RatTerm division methods). Call this value scalar  [scaler = x^2]
+
+            Add this multiplier RatPoly to quotient (quotient = quotient + scaler) using the add pseudocode. [quotient = 0 + x^2 = x^2]
+
+           Next, we will need to perform the following operation with RatPolys: remainder = remainder - (divisor * scaler). We will multiply divisor and scaler
+           the same way we do in the multiplication pseudocode. Additionally, subtracting the RatPolys is just the same as adding remainder to a negated divisor*multiplayer.
+           As a result, to negate divisor*scaler (which we will just call subtractor), we loop through subtractor's RatTerms and perform the RatTerm
+           negate operation on each one of them, adding them to a newly created RatPoly object which we then return.
+           As a result, we now have remainder + (-subtractor) which we will set equal to the remainder RatPoly.
+            [remainder = (x^3 + x - 1) - ( x^3+x^2) = (-x^2+x-1)]
+
+        Iteration #2: [divisor = (x+1) && quotient = x^2 && remainder = (-x^2+x-1)]
+
+                   Find the largest degreed term within the remainder and call it remainder_degree [remainder_degree = -x^2]
+                   Find the largest degreed term within the divisor and call it the divisor_degree [x]
+
+                   Determine the value that we can multiply divisor_degree by to get remainder_degree  through the operation of
+                   dividing remainder_degree by divisor_degree (using RatTerm division methods). Call this value scalar [scaler = -x]
+
+                   Add this multiplier RatPoly to quotient (quotient = quotient + scaler) using the add pseudocode. [quotient = x^2 - x]
+
+                  Next, we will need to perform the following operation with RatPolys: remainder = remainder - (divisor * scaler). We will multiply divisor and scaler
+                  the same way we do in the multiplication pseudocode. Additionally, subtracting the RatPolys is just the same as adding remainder to a negated divisor*multiplayer.
+                  As a result, to negate divisor*scaler (which we will just call subtractor), we loop through subtractor's RatTerms and perform the RatTerm
+                  negate operation on each one of them, adding them to a newly created RatPoly object which we then return.
+                  As a result, we now have remainder + (-subtractor) which we will set equal to the remainder RatPoly.
+                   [remainder = (-x^2 + x - 1) - (-x^2-x) = (2x-1)]
+
+         Iteration #3: [divisor = (x+1) && quotient = x^2 - x && remainder = (2x-1)]
+
+                   Find the largest degreed term within the remainder and call it remainder_degree [remainder_degree = 2x]
+                   Find the largest degreed term within the divisor and call it the divisor_degree [x]
+
+                   Determine the value that we can multiply divisor_degree by to get remainder_degree  through the operation of
+                   dividing remainder_degree by divisor_degree (using RatTerm division methods). Call this value scalar [scaler = 2]
+
+                   Add this multiplier RatPoly to quotient (quotient = quotient + scaler) using the add pseudocode.[quotient = x^2 - x + 2]
+
+                   Next, we will need to perform the following operation with RatPolys: remainder = remainder - (divisor * scaler). We will multiply divisor and scaler
+                   the same way we do in the multiplication pseudocode. Additionally, subtracting the RatPolys is just the same as adding remainder to a negated divisor*multiplayer.
+                   As a result, to negate divisor*scaler (which we will just call subtractor), we loop through subtractor's RatTerms and perform the RatTerm
+                   negate operation on each one of them, adding them to a newly created RatPoly object which we then return.
+                   As a result, we now have remainder + (-subtractor) which we will set equal to the remainder RatPoly.
+                   [remainder = (2x-1) - (2x+2) = (-3)]
+
+          Loop exits since the degree of -3 is less than the degree of (x+1)
+
+          return the quotient [x^2 - x + 2]
+
+
+## Part 1
+###########################################################################
+
+1. Weakened Rep Invariant
+Answer: To begin, the methods that NEED to change are
+
+Needs to change:
+    1. checkRep()
+       Change: Now needs to not have a check for being in lowest terms since it will throw an exception if it does; consequently, since we want
+       all possible values to be representable, throwing an error for something that was never specified as a requirement within the constructors or rep invariant
+       is a bug. This change ultimately has the advantage of making checkRep easier to read while also causing the code to crash far less as a result of failing the checks;
+       however, not forcing an error when things aren't in simplest terms could result in other methods (such as equals) to have errors since ither code may have been
+       reliant on the condition being checked.
+
+    2. equals(Object obj)
+       Change: With the given change, 20/25 and 4/5 would not be recognized as the same value even though they simplify to the same things; consequently, we need to
+       perform simplification operations within the method to see if any 2 fractions truly equal each other or not. Regarding advantages, equals is no longer
+       reliant on other parts of the code for its comparing fractions to be in simplest terms; however, adding the code for this change makes the equals
+       method less concise while also making calls to the equals method take slightly longer.
+
+    3. toString()
+       Change: 20/25 prints as 20/25 instead of 4/5 when it MUST print it out in most simplified terms; consequently, it
+       needs to be changed so that it simplifies any fraction that comes into it. This change is advantageous since
+       now toString isn't reliant on other methods to keep fractions in simplest terms for it; however, it requires writing more code
+       in the toString method making it harder to read and slightly increasing its runtime.
+
+
+Could change:
+
+    1. hashCode()
+       Change: Currently 20/25 and 4/5 would not be recognized as the same ratNum so we could make it so that hashCode automatically
+        simplifies the fractions seen as the same value, ultimately resulting in fewer hash buckets being taken up within hashing ADTs.
+        The advantages to this method is that hashCode isn't reliant on other methods in order to make it run efficiently; however,
+        writing hashCode this way requires the writing of more code which not only makes the method harder to read but makes it take longer to run.
+    2. RatNum(int n, int d)
+              Change: Currently this constructor forcibly simplifies all terms, but it doesn't need to; consequently, it could be changed so that all
+              RatTerms aren't necessarily simplified terms since this is no longer a requirement. The advantages of this change is that the constructor
+              1) is now more concise and 2) allows us to represent far more RatTerms than before; however, this change ultimately breaks other pieces
+              of code without modifying other methods (such as equals) and grants us the ability to create many superfluous unsimplified values which
+              don't have much unique mathematical meaning.
+
+
+2.
+Answer: To begin, since we aren't creating a new RatNum object that calls the constructor, and instead
+are essentially giving the user the ability to change the current objects fields however they want,
+this form violates the abstraction barrier and doesn't necessarily meet the requirements of checkRep (also no @modifies clause).
+For example, if a client adds 3/4 and 3/4 now, we end up with 24/16 instead of 3/2 which
+fails to meet the specifications of RatNum (where all terms are simplified). Of course, this is incredibly insecure as well
+since a client with some clever manipulation and the use of the methods can essentially change a particular RatNum's fields to
+whatever they want, ultimately potentially ruining other peoples' previously created RatNums (changing 12/5 to NaN, etc.).
+
+
+
+3. Constructor checkReps
+Answer: Due to the fact that the numerator and denominator fields are final, a ratNum's fields are 100%
+immutable and no operations can change them since final ints can't change.
+As a result, once the fields have been initialized in the constructor
+and it has been seen that those fields don't violate the rep invariant, there is no point in ever checking to see
+if they violate the rep invariant again since the fields couldn't have changed since being put in place in the
+constructor (where they proved that they work). Due to this, simply having checkRep at the end of the constructor is enough
+in this case since at the beginning of the constructor the fields aren't even initialized and by the end
+if nothing is violated then the final fields will never violate anything.
+
+## Part 2
+###########################################################################
+
+
+1. Calls to checkRep in RatTerm
+Answer: I put checkRep statements at the end of all constructors and at the beginning and end of all public methods
+that either reference a method other than itself (potential to violate rep invariant in those other methods) or directly modify the fields. For example,
+getCoeff() simply returns a RatNum which can't modify RatTerms' fields so it doesn't require checkRep; however, negate requires us to create
+a new RatTerm object which could potentially modify our objects' fields if we are operating under the assumption that we don't know what
+any other method does (including the constructor), so we use checkRep to make sure that our object doesn't violate the rep invariant. Additionally,
+we add checkRep to all methods that don't directly manipulate fields as even if that method itself doesn't "obviously" look like it will cause an error
+it would still help us stop a rep invariant violation faster (since other methods which violated the rep invariant could call it before being
+caught in their own method) while also being an effective sanity check.
+
+
+
+2. Weakened Rep Invariant
+
+Needs to change:
+    toString
+        Change: toString requires a 0 to be printed out whenever the term equals 0. However, it operates under the assumption that
+        if coefficient is 0 then expt = 0 so they simply used the check "expt == 0" to print out a coefficient of 0 when they had
+        the term 0x^0. Since this is no longer a viable strategy since we could have something like 0x^1, we'd need to revise
+        the code in order to ensure that if the coefficient is 0 we simply print out 0. This ultimately makes the method more clunky, and
+        although there is a pro to the fact that now toString isn't reliant on any other part of the code to print out the right input as much,
+        the big cons is that it requires more code writing and makes program clarity worse.
+    checkRep
+        Change: Currently checkRep will still throw an exception whenever we have a 0 coefficient and a none 0 exponent
+        which crashes the code even for inputs that work according to the rep invariant. As a result, we need to change the method by removing
+        the "assert (!this.coeff.equals(RatNum.ZERO) || this.expt == 0)." The advantage to this change is that it is much harder
+        to break the code due to there being fewer restrictions with checkRep while also making the method easier to read and write; however,
+        since this checkRep is no longer in place we will get a lot of redundant terms which, if we are purely using RatTerms for math computations,
+        just makes the variables and data harder to read rather than contributing anything.
+    equals
+        Change: Due to the fact that 2 RatTerms need to have their exponents and their coefficients be the same to be considered equal, 0x^2 and 0x^3 will
+        be considered different values even though they equal the same thing. To fix this we could simply use the eval method on both the current RatTerm
+        and the other RatTerm and then use that as a check to see if they are equal instead. The advantage of this is that using eval makes the method easier to read
+        since we need fewer conditions while also making more intuitive sense; however, since we are calling a different method from RatTerm now, the chance that
+        we violate our rep invariant from the equal() method increases since for all we know eval violates the rep invariant (operating under the
+        assumption we don't know what it does). Additionally, the code takes slightly longer to run thanks to us now using 2 calls to eval instead
+        of the old way of using "RatNum.equals."
+Could/should change:
+    HashCode
+        Change: Since now whenever the coefficient is 0 we don't have to have the exponent be 0, there can be many different hashcode values
+        which each equal 0 ultimately filling up many different Hash ADT buckets with the same value. To fix this we could add a condition within hashCode
+        so that we use a 0 for the expt if the coefficient is 0. The advantages of this method is that now the values created by hashCode are less reliant
+        on other parts of the code and we still only use one bucket for the value of 0 just like before;
+        however, this requires us to write more code for the hashCode function and makes the whole method messier and less elegant than it was before.
+    RatTerm(RatNum c, int e)
+        Change: Since we no longer need the expt to be 0 when the coefficient is, we no longer need the if check in RatTerm(RatNum c, int e) that does this
+        since it needlessly restricts our code. To fix this, we simply remove the "if(c.equals(RatNum.ZERO)) { ... }" portion of our code from this method.
+        The advantages of this way is that now we can represent many more values in RatTerm while also making the constructor far more concise; however,
+        we will now have a lot more superfluous values and, without the previous code being in the constructor, methods like equals and toString will fail without
+        being modified ultimately requiring a lot more code to be written elsewhere to keep the class working as intended.
+
+
+3. Alternate Rep Invariant
+
+
+Need to change:
+    checkRep
+        Change: checkRep needs to change so that the entirety of the rep invariant is represented by it which means we need a check
+        that states if expt = 0 when coeff.isNaN. By doing this, the code for checkRep would be harder to read than before; however,
+        the number of "NaN values" (which don't mean anything no matter what the expt is) drastically decreases since now
+        we will be throwing errors whenever this condition is violated, ultimately making
+        RatTerm representations more user-friendly.
+
+    RatTerm(RatNum c, int e)
+        Change: Needs to change so that the rep invariant is maintained when a new RatTerm object is constructed. As a result, we'd need
+        a condition to check that "if c.isNaN then set e equal to 0" so that every new RatTerm meets the criteria of the spec. In regards
+        to disadvantages, doing this requires writing more code; additionally nearly every method checks for isNaN() within itself
+        where we then return a RatTerm whose exponent is already equal to 0 making this mostly irrelevant when it comes to affecting all
+        other methods. However, it does help make the code more consistent and
+        having a specific value that NaN is always set to makes the code easier to reason about whenever it is in fact NaN.
+
+
+getExpt returns only 0 now for NaN
+Hashcode would still return 0
+get Coeff works the same
+Equals would still return true if both are NaN or false if both aren't
+ToString still returns "NaN"
+valueOf still reutrns "NaN"
+div, mul, sub, add, negate, and eval all still return "NaN"
+isNaN only checks coefficient
+
+## Part 3
+###########################################################################
+
+
+1. Calls to checkRep in RatPoly
+
+Answer: Unlike in other problems, although the field terms itself can't be changed, terms'
+values can change  which could violate our rep invariant. As a result, every public method has the *potential*
+to be able to manipulate terms (either through direct operations on terms or method calls such as mult,
+div, add, sub, negate, and the constructors) so all methods were given checkReps at the beginning and end
+to make sure the rep invariant remained unbroken and so we could catch violations
+as quickly as possible. By doing this, I make sure that when going into
+methods that could potentially change terms (hence potentially violating the rep invariant)
+that my rep invariant is true (which is required for an invariant) while also
+ensuring that the rep invariant holds even after (either intentionally or accidentally) modifying and writing to the terms field.
+
+2. Alternate Representation
+
+Answer: To begin, there is a huge advantage to simply using 2 lists since it means we are no
+longer dependent on a RatTerm class and don't have to take the time to build it while also having
+far more ready access to RatNums than before (since we no longer have to go through RatTerm to actually
+get a coefficient value). However, removing this part of the code does make everything A LOT more complicated in the
+long run as now we no longer have all the operations for RatTerm and, whenever we want to add two terms, we need
+to 1) iterate through two separate lists and then 2) perform all the checks that we had in our RatTerm.add
+method every single time we add terms (checking to see if anything is NaN, 0, etc.) which potentially results in a lot
+of redundant code. Because of this, although RatTerm takes more work to make and manage potentially,
+it is far better in terms of abstraction and allows for relative ease when it comes to performing operations
+between 2 terms whilst simply having 2 lists makes operations between 2 terms a nightmare of keeping track
+of each terms' distinct variables amongst other things.
+

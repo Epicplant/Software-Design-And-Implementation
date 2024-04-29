@@ -1,0 +1,18 @@
+# Tests that if a node doesn't exist within the graph when Dijkstra's algorithm is applied that the node is shown
+# as unknown
+
+# Creates a new graph
+created graph newGraph
+
+# Attempts to find a path between two non-existent nodes
+unknown: A
+unknown: B
+
+# Adds node A to the graph
+added node A to newGraph
+
+# Attempts to find a path between one non-existent source node and a dest node
+unknown: B
+
+# Attempts to find a path between a source node and a non-existent dest node
+unknown: B

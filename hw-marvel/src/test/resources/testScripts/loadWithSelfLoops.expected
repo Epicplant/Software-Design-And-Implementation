@@ -1,0 +1,7 @@
+# Tests that every node doesn't have an edge to itself even when there are intentional self-loops
+
+# Loads a new graph from a csv file
+loaded graph newGraph
+
+# Lists all of the children of A
+the children of A in newGraph are: B(1)

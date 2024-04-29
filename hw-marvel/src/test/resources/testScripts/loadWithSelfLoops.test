@@ -1,0 +1,7 @@
+# Tests that every node doesn't have an edge to itself even when there are intentional self-loops
+
+# Loads a new graph from a csv file
+LoadGraph newGraph selfLoopHeroGraph.csv
+
+# Lists all of the children of A
+ListChildren newGraph A

@@ -1,0 +1,11 @@
+# Tests that we correctly have a list of 1 node when ListNodes is called
+# and the graph has only one node
+
+# Creates our new graph
+CreateGraph newGraph
+
+# Adds a new node "n1"
+AddNode newGraph n1
+
+# Lists all of the nodes of this new graph
+ListNodes newGraph

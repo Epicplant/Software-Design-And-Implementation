@@ -1,0 +1,8 @@
+# Tests that if there are 2 paths of the exact same length from node 1 to node 2 that the lexicographically
+# shortest path is used
+
+# Loads the graph
+LoadGraph heroes lexicographicGraphTestFile.csv
+
+# Finds shortest path between heroes
+FindPath heroes A D

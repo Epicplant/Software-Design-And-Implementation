@@ -1,0 +1,23 @@
+Briefly list any changes you made to your graph class during hw-pathfinder,
+and why you made those changes.
+
+Answer:
+
+1.Changed the ChrisGraph.node field names (changed method and comment names to reflect this). This was
+to make the fields make more sense now that ChrisGraph.node was generic since now nodes don't necessarily
+store node names.
+
+2. Made ChrisGraph.node a static class. This was so that the equals method would work properly and also
+so that creating an individual node was a lot simpler (no longer new ChrisGraph(). new Node() but instead
+new ChrisGraph.Node()).
+
+3. ChrisGraph.node now has its edgeData set to null instead of "" whenever
+only one parameter is placed into the constructor. This is to make it work with generics since not
+all edgeData's will hold strings.
+
+4. Changed graphContainsNode so that it throws an IllegalArgumentException if the parameter is null.
+This is simply to make the graph method better since throwing an exception is better than requires due
+to the exceptions giving a reason why the function doesn't work in the form of an error.
+
+5. Changed the graph field in ChrisGraph so that it uses Sets to hold children of a node instead of lists.
+This is to increase performance and make graph.get(node).contains() constant time.

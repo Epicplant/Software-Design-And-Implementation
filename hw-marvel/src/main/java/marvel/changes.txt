@@ -1,0 +1,12 @@
+Briefly list any changes you made to your graph class during hw-marvel,
+and why you made those changes.
+
+Answer: I modified my node class so that there was a constructor where there was only a nodeName as a parameter.
+This was to help me reason through having a starting node with no incoming edge, and also makes sense to have
+since some nodes will obviously not have any incoming edges. As a result, that particular constructor sets
+the node weight to "" since it doesn't exist and it just empty. Additionally, I made it so graphContainsNode throws an
+exception if it ever gets null as a node name (also added a junit test for it).
+This is so I didn't need to write additional tests for making sure nodes were null when I was initializing
+my pathfinding algorithm.
+
+Minor Changes: Fixed ChrisGraph commenting error and removed TODOs since they were pointed out by TAs during grading
